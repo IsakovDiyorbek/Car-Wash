@@ -25,7 +25,7 @@ jobs:
           pwd
           echo "BOSHLANDIIIIIIIIIIIIIIIIIIIIIIIIIIi"
           git clone git@github.com:IsakovDiyorbek/Exam-5.git
-          cd Exam-5
+    
 
           cd Exam-5/Car-Wash-Api-Gateway || exit
           sudo docker compose down
@@ -33,7 +33,7 @@ jobs:
           sudo docker compose down
           sudo docker compose up
 
-          cd ../Car-Wash-Auht-Service || exit
+          cd ../Car-Wash-Auth-Service || exit
           sudo docker compose down
           sudo docker compose up --build
           sudo docker compose down
