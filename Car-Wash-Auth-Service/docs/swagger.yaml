@@ -1,0 +1,372 @@
+basePath: /
+definitions:
+  auth.ForgotPasswordRequest:
+    properties:
+      email:
+        type: string
+    type: object
+  auth.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  auth.LoginResponse:
+    properties:
+      expires_at:
+        type: string
+      token:
+        type: string
+    type: object
+  auth.LogoutRequest:
+    properties:
+      token:
+        type: string
+    type: object
+  auth.LogoutResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  auth.RegisterRequest:
+    properties:
+      date_of_birth:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+      token:
+        type: string
+      username:
+        type: string
+    type: object
+  auth.RegisterResponse:
+    type: object
+  auth.ResetPasswordRequest:
+    properties:
+      email:
+        type: string
+      new_password:
+        type: string
+      randomn_num:
+        type: string
+      username:
+        type: string
+    type: object
+  auth.ResetPasswordResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  user.ChangePasswordRequest:
+    properties:
+      id:
+        type: string
+      new_password:
+        type: string
+    type: object
+  user.ChangePasswordResponse:
+    type: object
+  user.GetAllUsersResponse:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/user.GetProfileResponse'
+        type: array
+    type: object
+  user.GetProfileResponse:
+    properties:
+      created_at:
+        type: string
+      date_of_birth:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      role:
+        type: string
+      username:
+        type: string
+    type: object
+  user.UpdateProfileRequest:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      role:
+        type: string
+      username:
+        type: string
+    type: object
+  user.UpdateProfileResponse:
+    type: object
+info:
+  contact: {}
+  description: Auth Service
+  title: Auth Service
+  version: "1.0"
+paths:
+  /auth/forgot:
+    post:
+      consumes:
+      - application/json
+      description: Initiates the forgot password flow by sending a code to the user's
+        email
+      parameters:
+      - description: Email
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.ForgotPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Initiate forgot password flow
+      tags:
+      - Auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user and returns a JWT token
+      parameters:
+      - description: Login Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.LoginResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      summary: Login with existing credentials
+      tags:
+      - Auth
+  /auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: Logs out a user by invalidating the refresh token
+      parameters:
+      - description: Logout Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LogoutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.LogoutResponse'
+        "401":
+          description: Invalid request payload
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Logout a user
+      tags:
+      - Auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user and returns a JWT token
+      parameters:
+      - description: Register Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RegisterResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      summary: Register a new user
+      tags:
+      - Auth
+  /auth/reset:
+    post:
+      consumes:
+      - application/json
+      description: Resets the user's password using the provided code and new password
+      parameters:
+      - description: Reset Password Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.ResetPasswordResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+        "500":
+          description: Error Reset
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Reset user's password
+      tags:
+      - Auth
+  /user/all:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.GetAllUsersResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      summary: Get all users
+      tags:
+      - User
+  /user/password:
+    put:
+      consumes:
+      - application/json
+      description: Changes a user's password
+      parameters:
+      - description: Change Password Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.ChangePasswordResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Change user password
+      tags:
+      - User
+  /user/profile:
+    put:
+      consumes:
+      - application/json
+      description: Updates a user's profile
+      parameters:
+      - description: Update Profile Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.UpdateProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.UpdateProfileResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update user profile
+      tags:
+      - User
+  /user/profile/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a user's profile by ID
+      parameters:
+      - description: User ID
+        in: query
+        name: id
+        type: string
+      - description: User Email
+        in: query
+        name: email
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.GetProfileResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - User
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

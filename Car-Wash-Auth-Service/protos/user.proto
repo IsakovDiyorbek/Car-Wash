@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "genproto/user";
+
+
+service UserService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+  rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
+
+}
+
+
+
+message GetProfileRequest {
+    string id = 1;
+    string email = 2;
+}
+
+message GetProfileResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string full_name = 4;
+  string date_of_birth = 5;
+  string role = 6;
+  string created_at = 7;
+}
+
+message GetAllUsersRequest{}
+
+message GetAllUsersResponse{
+  repeated GetProfileResponse users = 1;
+}
+
+
+message UpdateProfileRequest {
+  string id = 1;
+  string full_name = 2;
+  string username = 3;
+  string email = 4;
+  string role = 5;
+}
+
+message UpdateProfileResponse {}
+
+
+message ChangePasswordRequest {
+  string id = 1;
+  string new_password = 2;
+}
+
+message ChangePasswordResponse {}
+
+
+

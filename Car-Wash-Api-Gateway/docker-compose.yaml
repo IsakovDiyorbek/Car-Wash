@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  # API Gateway
+  gateway:
+    container_name: gateway_car_wash
+    build: .
+    ports:
+      - "9080:9080"
+    networks:
+      - Mynet  
+
+# Docker Networks
+networks:
+  Mynet:
+    external: true
+    name: car_wash
+    driver: bridge
+
+# Volumes
+volumes:
+  minio-data:

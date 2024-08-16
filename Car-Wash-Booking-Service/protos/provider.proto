@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package car_wash;
+
+option go_package = "genproto/carwash";
+
+service ProviderService {
+    rpc CreateProvider(CreateProviderRequest) returns (CreateProviderResponse);
+    rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
+    rpc UpdateProvider(UpdateProviderRequest) returns (UpdateProviderResponse);
+    rpc DeleteProvider(DeleteProviderRequest) returns (DeleteProviderResponse);
+    rpc ListProviders(ListProvidersRequest) returns (ListProvidersResponse);
+    rpc SearchProviders(SearchProvidersRequest) returns (SearchProvidersResponse);
+}
+
+message Service{
+    string id = 1;
+}
+
+message Availability {
+    string day = 1;
+    string start_time = 2;
+    string end_time = 3;
+}
+
+message GeoPoing {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message Provider{
+    string id = 1;
+    string user_id = 2;
+    string company_name = 3;
+    string description = 4;
+    repeated string service_id = 5;
+    repeated Availability availability = 6;
+    float average_rating = 7;
+    GeoPoing location = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message CreateProviderRequest {
+    string user_id = 1;
+    string company_name = 2;
+    string description = 3;
+    repeated string service_id = 4;
+    repeated Availability availability = 5;
+    GeoPoing location = 6;
+    float average_rating = 7;
+}
+
+message CreateProviderResponse {}
+
+
+message GetProviderRequest {
+    string id = 1;
+}
+
+message GetProviderResponse {
+    Provider provider = 1;
+}
+
+
+message UpdateProviderRequest {
+    string id = 1;
+    string user_id = 2;
+    string company_name = 3;
+    string description = 4;
+    repeated string service_id = 5;
+    repeated Availability availability = 6;
+    GeoPoing location = 7;
+    float average_rating = 8;
+
+}
+
+message UpdateProviderResponse {}
+
+message DeleteProviderRequest {
+    string id = 1;
+}
+
+message DeleteProviderResponse{}
+
+
+message ListProvidersRequest {
+    string user_id = 1;
+    string company_name = 2;
+    string description = 3;
+    float average_rating = 4;
+    int32 limit = 5;
+    int32 offset = 6;
+}
+
+message ListProvidersResponse{
+    repeated Provider provider = 1;
+   
+}
+
+message SearchProvidersRequest {
+    string company_name = 1;
+    string description = 2;
+}
+
+message SearchProvidersResponse {
+    repeated Provider providers = 1;
+}
+
+
+
+

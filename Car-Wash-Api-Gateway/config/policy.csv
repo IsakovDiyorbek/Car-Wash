@@ -1,0 +1,58 @@
+# Service management
+p, admin, /services, POST
+p, user, /services, POST
+p, admin, /services, GET
+p, admin, /services/:id, PUT
+p, admin, /services/:id, DELETE
+p, user, /services, GET
+p, user, /services/:id, GET
+p, provider, /services, POST
+p, provider, /services/:id, PUT
+p, user, /services/search, GET
+
+
+# Provider management
+p, admin, /providers, POST
+p, user, /providers, POST
+p, admin, /providers, GET
+p, admin, /providers/:id, PUT
+p, admin, /providers/:id, DELETE
+p, user, /providers, GET
+p, user, /providers/:id, GET
+p, provider, /providers, GET
+p, provider, /providers/:id, GET
+p, user, /providers/search, GET
+
+# Booking management
+p, admin, /bookings, POST
+p, user, /bookings, POST
+p, user, /bookings, GET
+p, user, /bookings/:id, GET
+p, admin, /bookings/:id, PUT
+p, admin, /bookings/:id, DELETE
+p, admin, /bookings/:id/confirm, PUT
+p, user, /bookings/:id/confirm, PUT
+p, provider, /bookings, GET
+p, provider, /bookings/:id, GET
+p, provider, /bookings/:id/confirm, PUT
+p, user, /bookings/:id/confirm, GET
+
+
+# Review management
+p, admin, /reviews, POST
+p, admin, /reviews, GET
+p, user, /reviews, GET
+p, user, /reviews, POST
+p, user, /reviews/:id, GET
+p, admin, /reviews/:id, PUT
+p, admin, /reviews/:id, DELETE
+
+# Payment management
+p, admin, /payments, GET
+p, user, /payments, GET
+p, user, /payments, POST
+p, user, /payments/:id, GET
+
+
+#Notification management
+p, user, /notifications/:id, GET

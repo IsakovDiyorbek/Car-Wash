@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package car_wash;
+
+option go_package = "genproto/carwash";
+
+
+service BookingService {
+    rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
+    rpc GetBooking(GetBookingRequest) returns (GetBookingResponse);
+    rpc UpdateBooking(UpdateBookingRequest) returns (UpdateBookingResponse);
+    rpc DeleteBooking(DeleteBookingRequest) returns (DeleteBookingResponse);
+    rpc ListBookings(ListBookingsRequest) returns (ListBookingsResponse);
+}
+
+message Booking {   
+    string id = 1; 
+    string user_id = 2;
+    string provider_id = 3;
+    string service_id = 4; 
+    string status = 5; 
+    string scheduled_time = 6; 
+    GeoPoint location = 7; 
+    float total_price = 8;
+    string created_at = 9; 
+    string updated_at = 10; 
+}
+
+message GeoPoint {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message CreateBookingRequest {
+    string user_id = 1; 
+    string provider_id = 2; 
+    string service_id = 3; 
+    string status = 4;
+    string scheduled_time = 5; 
+    GeoPoint location = 6; 
+    float total_price = 7;
+
+}
+
+message CreateBookingResponse {}
+
+message GetBookingRequest {
+    string id = 1;
+}
+
+message GetBookingResponse {
+    Booking booking = 1;
+}
+
+message UpdateBookingRequest {
+    string id = 1; 
+    string user_id = 2;
+    string provider_id = 3; 
+    string service_id = 4; 
+    string status = 5; 
+    string scheduled_time = 6; 
+    GeoPoint location = 7; 
+    float total_price = 8;
+}
+
+message UpdateBookingResponse {}
+
+message DeleteBookingRequest {
+    string id = 1; 
+}
+
+message DeleteBookingResponse {}
+
+message ListBookingsRequest {
+    string user_id = 1;
+    string provider_id = 2;
+    string service_id = 3; 
+    string status = 4; 
+    string scheduled_time = 5; 
+    int32 limit = 6;
+    int32 offset = 7;
+}
+
+message ListBookingsResponse {
+    repeated Booking bookings = 1;
+}

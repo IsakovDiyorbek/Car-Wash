@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package car_wash;
+
+option go_package = "genproto/carwash";
+
+service ServicesService {
+    rpc CreateService(CreateServiceRequest) returns (CreateServiceResponse);
+    rpc GetService(GetServiceRequest) returns (GetServiceResponse);
+    rpc UpdateService(UpdateServiceRequest) returns (UpdateServiceResponse);
+    rpc DeleteService(DeleteServiceRequest) returns (DeleteServiceResponse);
+    rpc ListServices(ListServicesRequest) returns (ListServicesResponse);
+    rpc SearchServices(SearchServicesRequest) returns (SearchServicesResponse);
+}
+
+
+
+message Services {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    float price = 4;
+    int32 duration = 5; 
+    string created_at = 6; 
+    string updated_at = 7; 
+}
+
+message CreateServiceRequest {
+    string name = 1;
+    string description = 2;
+    float price = 3;
+    int32 duration = 4;
+}
+
+message CreateServiceResponse {}
+
+message GetServiceRequest {
+    string id = 1;
+}
+
+message GetServiceResponse {
+    Services service = 1;
+}
+
+message UpdateServiceRequest {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    float price = 4;
+    int32 duration = 5; 
+}
+
+message UpdateServiceResponse {}
+
+message DeleteServiceRequest {
+    string id = 1;
+}
+
+message DeleteServiceResponse {}
+
+message ListServicesRequest {
+    string name = 1;
+    string description = 2;
+    float price = 3;
+    int32 duration = 4; 
+    int32 limit = 5;
+    int32 offset = 6;
+}
+
+message ListServicesResponse {
+    repeated Services services = 1;
+}
+
+message SearchServicesRequest{
+    string name = 1;
+    string description = 2;
+}
+
+message SearchServicesResponse{
+    repeated Services services = 1;
+}
+

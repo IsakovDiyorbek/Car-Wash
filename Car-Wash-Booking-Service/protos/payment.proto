@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package car_wash;
+
+option go_package = "genproto/carwash";
+
+
+service PaymentService {
+    rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+    rpc GetPayment(GetPaymentRequest) returns (GetPaymentResponse);
+    rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
+    rpc UpdatePayment(UpdatePaymentRequest) returns (UpdatePaymentResponse);
+}
+
+message Payment {
+    string id = 1;                 
+    string booking_id = 2;         
+    float amount = 3;              
+    string status = 4;      
+    string payment_method = 5;     
+    string transaction_id = 6;     
+    string created_at = 7; 
+    string updated_at = 8; 
+}
+
+message CreatePaymentRequest {
+    string booking_id = 1;         
+    float amount = 2;              
+    string status = 3;      
+    string payment_method = 4;  
+    string transaction_id = 5;   
+}
+
+message CreatePaymentResponse {}
+
+message GetPaymentRequest {
+    string id = 1;
+}
+
+message GetPaymentResponse {
+    Payment payment = 1;
+}
+
+message UpdatePaymentRequest {
+    string id = 1;                             
+    string status = 4;      
+         
+         
+}
+
+message UpdatePaymentResponse {}
+
+message ListPaymentsRequest {
+    string booking_id = 1;         
+    float amount = 2;              
+    string status = 3;      
+    string payment_method = 4;     
+    string transaction_id = 5;         
+    int32 limit = 6;
+    int32 offset = 7;
+}
+
+message ListPaymentsResponse {
+    repeated Payment payments = 1;
+}

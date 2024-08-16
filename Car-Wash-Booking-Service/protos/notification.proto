@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "genproto/carwash";
+
+package car_wash;
+
+service NotificationService {
+    rpc AddNotification(AddNotificationRequest) returns (AddNotificationResponse);
+    rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse);
+    rpc MarkNotificationAsRead(MarkNotificationAsReadRequest) returns (MarkNotificationAsReadResponse);
+}
+
+message AddNotificationRequest {
+    string booking_id = 1;
+    string message = 2;
+    bool is_read = 3;
+}
+message AddNotificationResponse {}
+
+message Notification {
+    string id = 1;
+    string booking_id = 2;
+    string message = 3;
+    string created_at = 4;
+    bool is_read = 5;
+}
+
+message GetNotificationsRequest {
+    string booking_id = 1; 
+}
+
+message GetNotificationsResponse {
+    repeated Notification notifications = 1;
+}
+
+message MarkNotificationAsReadRequest {
+    string id = 1; 
+}
+
+message MarkNotificationAsReadResponse {
+    bool success = 1;
+    string message = 2;
+}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package car_wash;
+
+option go_package = "genproto/carwash";
+
+
+
+service ReviewService {
+    rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
+    rpc GetReview(GetReviewRequest) returns (GetReviewResponse);
+    rpc UpdateReview(UpdateReviewRequest) returns (UpdateReviewResponse);
+    rpc DeleteReview(DeleteReviewRequest) returns (DeleteReviewResponse);
+    rpc ListReviews(ListReviewsRequest) returns (ListReviewsResponse);
+}
+
+message Review {
+    string id = 1;
+    string booking_id = 2;         
+    string user_id = 3;             
+    string provider_id = 4;         
+    float rating = 5;              
+    string comment = 6;            
+    string created_at = 7; 
+    string updated_at = 8; 
+}
+
+message CreateReviewRequest {
+    string booking_id = 1;         
+    string user_id = 2;            
+    string provider_id = 3;        
+    float rating = 4;              
+    string comment = 5;            
+}
+
+message CreateReviewResponse {}
+
+message GetReviewRequest {
+    string id = 1;
+}
+
+message GetReviewResponse {
+    Review review = 1;
+}
+
+message UpdateReviewRequest {
+    string id = 1;                 
+    string booking_id = 2;         
+    string user_id = 3;            
+    string provider_id = 4;        
+    float rating = 5;              
+    string comment = 6;            
+}
+
+message UpdateReviewResponse {}
+
+message DeleteReviewRequest {
+    string id = 1; 
+}
+
+message DeleteReviewResponse {}
+
+message ListReviewsRequest {
+    string booking_id = 1;         
+    string provider_id = 2;    
+    float rating = 3;
+    string comment = 4;    
+    int32 limit = 5;
+    int32 offset = 6;
+}
+
+message ListReviewsResponse {
+    repeated Review reviews = 1;
+}

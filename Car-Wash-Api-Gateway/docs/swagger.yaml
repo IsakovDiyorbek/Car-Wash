@@ -1,0 +1,1285 @@
+basePath: /
+definitions:
+  carwash.Availability:
+    properties:
+      day:
+        type: string
+      end_time:
+        type: string
+      start_time:
+        type: string
+    type: object
+  carwash.Booking:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      location:
+        $ref: '#/definitions/carwash.GeoPoint'
+      provider_id:
+        type: string
+      scheduled_time:
+        type: string
+      service_id:
+        type: string
+      status:
+        type: string
+      total_price:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  carwash.CreateBookingRequest:
+    properties:
+      location:
+        $ref: '#/definitions/carwash.GeoPoint'
+      provider_id:
+        type: string
+      scheduled_time:
+        type: string
+      service_id:
+        type: string
+      status:
+        type: string
+      total_price:
+        type: number
+      user_id:
+        type: string
+    type: object
+  carwash.CreateBookingResponse:
+    type: object
+  carwash.CreatePaymentRequest:
+    properties:
+      amount:
+        type: number
+      booking_id:
+        type: string
+      payment_method:
+        type: string
+      status:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  carwash.CreatePaymentResponse:
+    type: object
+  carwash.CreateProviderRequest:
+    properties:
+      availability:
+        items:
+          $ref: '#/definitions/carwash.Availability'
+        type: array
+      average_rating:
+        type: number
+      company_name:
+        type: string
+      description:
+        type: string
+      location:
+        $ref: '#/definitions/carwash.GeoPoing'
+      service_id:
+        items:
+          type: string
+        type: array
+      user_id:
+        type: string
+    type: object
+  carwash.CreateProviderResponse:
+    type: object
+  carwash.CreateReviewRequest:
+    properties:
+      booking_id:
+        type: string
+      comment:
+        type: string
+      provider_id:
+        type: string
+      rating:
+        type: number
+      user_id:
+        type: string
+    type: object
+  carwash.CreateReviewResponse:
+    type: object
+  carwash.CreateServiceRequest:
+    properties:
+      description:
+        type: string
+      duration:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  carwash.CreateServiceResponse:
+    type: object
+  carwash.DeleteBookingResponse:
+    type: object
+  carwash.DeleteProviderResponse:
+    type: object
+  carwash.DeleteReviewResponse:
+    type: object
+  carwash.DeleteServiceResponse:
+    type: object
+  carwash.GeoPoing:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+    type: object
+  carwash.GeoPoint:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+    type: object
+  carwash.GetBookingResponse:
+    properties:
+      booking:
+        $ref: '#/definitions/carwash.Booking'
+    type: object
+  carwash.GetNotificationsResponse:
+    properties:
+      notifications:
+        items:
+          $ref: '#/definitions/carwash.Notification'
+        type: array
+    type: object
+  carwash.GetPaymentResponse:
+    properties:
+      payment:
+        $ref: '#/definitions/carwash.Payment'
+    type: object
+  carwash.GetProviderResponse:
+    properties:
+      provider:
+        $ref: '#/definitions/carwash.Provider'
+    type: object
+  carwash.GetReviewResponse:
+    properties:
+      review:
+        $ref: '#/definitions/carwash.Review'
+    type: object
+  carwash.GetServiceResponse:
+    properties:
+      service:
+        $ref: '#/definitions/carwash.Services'
+    type: object
+  carwash.ListBookingsResponse:
+    properties:
+      bookings:
+        items:
+          $ref: '#/definitions/carwash.Booking'
+        type: array
+    type: object
+  carwash.ListPaymentsResponse:
+    properties:
+      payments:
+        items:
+          $ref: '#/definitions/carwash.Payment'
+        type: array
+    type: object
+  carwash.ListProvidersResponse:
+    properties:
+      provider:
+        items:
+          $ref: '#/definitions/carwash.Provider'
+        type: array
+    type: object
+  carwash.ListReviewsResponse:
+    properties:
+      reviews:
+        items:
+          $ref: '#/definitions/carwash.Review'
+        type: array
+    type: object
+  carwash.ListServicesResponse:
+    properties:
+      services:
+        items:
+          $ref: '#/definitions/carwash.Services'
+        type: array
+    type: object
+  carwash.Notification:
+    properties:
+      booking_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      is_read:
+        type: boolean
+      message:
+        type: string
+    type: object
+  carwash.Payment:
+    properties:
+      amount:
+        type: number
+      booking_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      payment_method:
+        type: string
+      status:
+        type: string
+      transaction_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  carwash.Provider:
+    properties:
+      availability:
+        items:
+          $ref: '#/definitions/carwash.Availability'
+        type: array
+      average_rating:
+        type: number
+      company_name:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      location:
+        $ref: '#/definitions/carwash.GeoPoing'
+      service_id:
+        items:
+          type: string
+        type: array
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  carwash.Review:
+    properties:
+      booking_id:
+        type: string
+      comment:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      provider_id:
+        type: string
+      rating:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  carwash.SearchProvidersResponse:
+    properties:
+      providers:
+        items:
+          $ref: '#/definitions/carwash.Provider'
+        type: array
+    type: object
+  carwash.SearchServicesResponse:
+    properties:
+      services:
+        items:
+          $ref: '#/definitions/carwash.Services'
+        type: array
+    type: object
+  carwash.Services:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  carwash.UpdateBookingResponse:
+    type: object
+  carwash.UpdateProviderResponse:
+    type: object
+  carwash.UpdateReviewResponse:
+    type: object
+  carwash.UpdateServiceResponse:
+    type: object
+info:
+  contact: {}
+  description: Api Gateway Booking Service
+  title: Api Gateway
+  version: "1.0"
+paths:
+  /bookings:
+    get:
+      consumes:
+      - application/json
+      description: Get all bookings
+      parameters:
+      - description: provider_id
+        in: query
+        name: provider_id
+        type: string
+      - description: user_id
+        in: query
+        name: user_id
+        type: string
+      - description: scheduled_time
+        in: query
+        name: scheduled_time
+        type: string
+      - description: status
+        in: query
+        name: status
+        type: string
+      - description: service_id
+        in: query
+        name: service_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.ListBookingsResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get all bookings
+      tags:
+      - Bookings
+    post:
+      consumes:
+      - application/json
+      description: Create a new booking
+      parameters:
+      - description: booking
+        in: body
+        name: booking
+        required: true
+        schema:
+          $ref: '#/definitions/carwash.CreateBookingRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.CreateBookingResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Create a new booking
+      tags:
+      - Bookings
+  /bookings/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a booking
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.DeleteBookingResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Delete a booking
+      tags:
+      - Bookings
+    get:
+      consumes:
+      - application/json
+      description: Get a booking
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetBookingResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get a booking
+      tags:
+      - Bookings
+    put:
+      consumes:
+      - application/json
+      description: Update a booking
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: status
+        in: query
+        name: status
+        type: string
+      - description: user_id
+        in: query
+        name: user_id
+        type: string
+      - description: provider_id
+        in: query
+        name: provider_id
+        type: string
+      - description: service_id
+        in: query
+        name: service_id
+        type: string
+      - description: scheduled_time
+        in: query
+        name: scheduled_time
+        type: string
+      - description: total_price
+        in: query
+        name: total_price
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.UpdateBookingResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Update a booking
+      tags:
+      - Bookings
+  /bookings/{id}/confirm:
+    put:
+      consumes:
+      - application/json
+      description: Confirm a booking by ID
+      parameters:
+      - description: Booking ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.UpdateBookingResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Confirm a booking
+      tags:
+      - Bookings
+  /notifications/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all notifications
+      parameters:
+      - description: booking_id
+        in: query
+        name: booking_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetNotificationsResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get all notifications
+      tags:
+      - Notifications
+  /payments:
+    get:
+      consumes:
+      - application/json
+      description: List payments with optional filters
+      parameters:
+      - description: booking_id
+        in: query
+        name: booking_id
+        type: string
+      - description: amount
+        in: query
+        name: amount
+        type: number
+      - description: status
+        in: query
+        name: status
+        type: string
+      - description: payment_method
+        in: query
+        name: payment_method
+        type: string
+      - description: transaction_id
+        in: query
+        name: transaction_id
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.ListPaymentsResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: List payments
+      tags:
+      - Payments
+    post:
+      consumes:
+      - application/json
+      description: Create a new payment
+      parameters:
+      - description: payment
+        in: body
+        name: payment
+        required: true
+        schema:
+          $ref: '#/definitions/carwash.CreatePaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.CreatePaymentResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Create a new payment
+      tags:
+      - Payments
+  /payments/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get a payment
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetPaymentResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get a payment
+      tags:
+      - Payments
+  /providers:
+    get:
+      consumes:
+      - application/json
+      description: Get all providers
+      parameters:
+      - description: averageRating
+        in: query
+        name: averageRating
+        type: number
+      - description: companyName
+        in: query
+        name: companyName
+        type: string
+      - description: description
+        in: query
+        name: description
+        type: string
+      - description: userId
+        in: query
+        name: userId
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.ListProvidersResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get all providers
+      tags:
+      - Providers
+    post:
+      consumes:
+      - application/json
+      description: Create a new provider
+      parameters:
+      - description: provider
+        in: body
+        name: provider
+        required: true
+        schema:
+          $ref: '#/definitions/carwash.CreateProviderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.CreateProviderResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Create a new provider
+      tags:
+      - Providers
+  /providers/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a provider
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.DeleteProviderResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Delete a provider
+      tags:
+      - Providers
+    get:
+      consumes:
+      - application/json
+      description: Get a provider
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetProviderResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get a provider
+      tags:
+      - Providers
+    put:
+      consumes:
+      - application/json
+      description: Update a provider
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: averageRating
+        in: query
+        name: averageRating
+        type: number
+      - description: companyName
+        in: query
+        name: companyName
+        type: string
+      - description: description
+        in: query
+        name: description
+        type: string
+      - description: userId
+        in: query
+        name: userId
+        type: string
+      - description: serviceId
+        in: query
+        name: serviceId
+        type: string
+      - description: availability
+        in: query
+        name: availability
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.UpdateProviderResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Update a provider
+      tags:
+      - Providers
+  /providers/search:
+    get:
+      consumes:
+      - application/json
+      description: Search providers by company name or description
+      parameters:
+      - description: Company Name
+        in: query
+        name: CompanyName
+        required: true
+        type: string
+      - description: Description
+        in: query
+        name: Description
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.SearchProvidersResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Search providers
+      tags:
+      - Providers
+  /reviews:
+    get:
+      consumes:
+      - application/json
+      description: Get all reviews
+      parameters:
+      - description: rating
+        in: query
+        name: rating
+        type: number
+      - description: providerId
+        in: query
+        name: providerId
+        type: string
+      - description: userId
+        in: query
+        name: userId
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.ListReviewsResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get all reviews
+      tags:
+      - Reviews
+    post:
+      consumes:
+      - application/json
+      description: Create a new review
+      parameters:
+      - description: review
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/carwash.CreateReviewRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.CreateReviewResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Create a new review
+      tags:
+      - Reviews
+  /reviews/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a review
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.DeleteReviewResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Delete a review
+      tags:
+      - Reviews
+    get:
+      consumes:
+      - application/json
+      description: Get a review
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetReviewResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get a review
+      tags:
+      - Reviews
+    put:
+      consumes:
+      - application/json
+      description: Update a review
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: rating
+        in: query
+        name: rating
+        type: number
+      - description: comment
+        in: query
+        name: comment
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.UpdateReviewResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Update a review
+      tags:
+      - Reviews
+  /services:
+    get:
+      consumes:
+      - application/json
+      description: Get all services
+      parameters:
+      - description: description
+        in: query
+        name: description
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: price
+        in: query
+        name: price
+        type: number
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      - description: duration
+        in: query
+        name: duration
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.ListServicesResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get all services
+      tags:
+      - Services
+    post:
+      consumes:
+      - application/json
+      description: Create a new service
+      parameters:
+      - description: service
+        in: body
+        name: service
+        required: true
+        schema:
+          $ref: '#/definitions/carwash.CreateServiceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.CreateServiceResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Create a new service
+      tags:
+      - Services
+  /services/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a service
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.DeleteServiceResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Delete a service
+      tags:
+      - Services
+    get:
+      consumes:
+      - application/json
+      description: Get a service
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.GetServiceResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get a service
+      tags:
+      - Services
+    put:
+      consumes:
+      - application/json
+      description: Update a service
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: description
+        in: query
+        name: description
+        type: string
+      - description: price
+        in: query
+        name: price
+        type: number
+      - description: duration
+        in: query
+        name: duration
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.UpdateServiceResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Update a service
+      tags:
+      - Services
+  /services/search:
+    get:
+      consumes:
+      - application/json
+      description: Search services by name or description
+      parameters:
+      - description: name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: description
+        in: query
+        name: description
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.SearchServicesResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Search services
+      tags:
+      - Services
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
