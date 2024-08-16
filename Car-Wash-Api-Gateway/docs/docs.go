@@ -1268,6 +1268,56 @@ const docTemplate = `{
                 }
             }
         },
+        "/services/popular": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get popular services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Get popular services",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/carwash.PopularServicesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    }
+                }
+            }
+        },
         "/services/search": {
             "get": {
                 "security": [
@@ -1842,6 +1892,28 @@ const docTemplate = `{
                 },
                 "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "carwash.PopularService": {
+            "type": "object",
+            "properties": {
+                "score": {
+                    "type": "number"
+                },
+                "service_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "carwash.PopularServicesResponse": {
+            "type": "object",
+            "properties": {
+                "services": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/carwash.PopularService"
+                    }
                 }
             }
         },

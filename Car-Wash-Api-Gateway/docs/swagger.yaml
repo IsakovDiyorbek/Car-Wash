@@ -238,6 +238,20 @@ definitions:
       updated_at:
         type: string
     type: object
+  carwash.PopularService:
+    properties:
+      score:
+        type: number
+      service_id:
+        type: string
+    type: object
+  carwash.PopularServicesResponse:
+    properties:
+      services:
+        items:
+          $ref: '#/definitions/carwash.PopularService'
+        type: array
+    type: object
   carwash.Provider:
     properties:
       availability:
@@ -1241,6 +1255,38 @@ paths:
       security:
       - BearerAuth: []
       summary: Update a service
+      tags:
+      - Services
+  /services/popular:
+    get:
+      consumes:
+      - application/json
+      description: Get popular services
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/carwash.PopularServicesResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      security:
+      - BearerAuth: []
+      summary: Get popular services
       tags:
       - Services
   /services/search:

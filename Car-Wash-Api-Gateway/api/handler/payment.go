@@ -2,10 +2,8 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"strconv"
-	"time"
 
 	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
 	"github.com/gin-gonic/gin"
@@ -44,6 +42,8 @@ func (h *Handler) CreatePayment(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "Amount does not match"})
 		return
 	}
+
+	req.Status = "Completed"
 	input, err := json.Marshal(req)
 	err = h.Client.Kafka.ProduceMessages("payment", input)
 	if err != nil {
@@ -54,23 +54,12 @@ func (h *Handler) CreatePayment(c *gin.Context) {
 		return
 	}
 
-	_, err = h.Client.Notification.AddNotification(c, &carwash.AddNotificationRequest{BookingId: req.BookingId, Message: "Success create payment", IsRead: true})
-	if err != nil{
+	notification := carwash.AddNotificationRequest{Message: "Success create payment", IsRead: true, BookingId: req.BookingId}
+	request, err := json.Marshal(notification)
+	err = h.Client.Kafka.ProduceMessages("notification", request)
+	if err != nil {
 		log.Println("Error while adding notification", err)
 	}
-
-	go func() {
-		time.Sleep(10 * time.Second)
-		req.Status = "Completed"
-
-		_, err := h.Client.Payment.UpdatePayment(c, &carwash.UpdatePaymentRequest{
-			Id:     req.TransactionId,
-			Status: req.Status,
-		})
-		if err != nil {
-			fmt.Println("Failed to update payment status:", err)
-		}
-	}()
 
 	c.JSON(200, gin.H{"message": "Payment created, status will be updated shortly"})
 }

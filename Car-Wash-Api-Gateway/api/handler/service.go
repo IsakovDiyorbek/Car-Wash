@@ -223,3 +223,54 @@ func (h *Handler) SearchServices(c *gin.Context) {
 	}
 	c.JSON(200, res)
 }
+
+
+
+
+
+
+
+// @Summary Get popular services
+// @Description Get popular services
+// @Tags Services
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param limit query int false "limit"
+// @Param offset query int false "offset"
+// @Success 200 {object} carwash.PopularServicesResponse
+// @Failure 400 {object} error
+// @Failure 500 {object} error
+// @Router /services/popular [get]
+func (h *Handler) PopularServices(c *gin.Context){
+	req := carwash.PopularServiceRequest{}
+	limitStr := c.Query("limit")
+	if limitStr != "" {
+		limitInt, err := strconv.Atoi(limitStr)
+		if err != nil{
+			c.JSON(400, "Error of parse limit")
+		}
+
+		req.Limit = int32(limitInt)
+	}
+
+	offsetStr := c.Query("limit")
+	if offsetStr != "" {
+		offsetInt, err := strconv.Atoi(offsetStr)
+		if err != nil{
+			c.JSON(400, "Error of parse limit")
+		}
+
+		req.Limit = int32(offsetInt)
+	}
+
+	res, err := h.Client.Service.GetPopularService(c, &carwash.PopularServiceRequest{
+		Limit: req.Limit,
+		Offset: req.Offset,
+	})
+	if err != nil{
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(200, res)
+}

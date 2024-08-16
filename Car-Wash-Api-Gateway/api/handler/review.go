@@ -172,6 +172,7 @@ func (h *Handler) GetReviews(c *gin.Context) {
 // @Router /reviews/{id} [put]
 func (h *Handler) UpdateReview(c *gin.Context) {
 	req := carwash.UpdateReviewRequest{}
+	req.Id = c.Query("id")
 	req.BookingId = c.Query("bookingId")
 	req.ProviderId = c.Query("providerId")
 	req.UserId = c.Query("userId")
@@ -216,13 +217,9 @@ func (h *Handler) UpdateReview(c *gin.Context) {
 // @Router /reviews/{id} [delete]
 func (h *Handler) DeleteReview(c *gin.Context) {
 	req := carwash.DeleteReviewRequest{}
-	err := c.BindJSON(&req)
-	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
-		return
-	}
+	req.Id = c.Query("id")
 
-	_, err = h.Client.Review.DeleteReview(c, &req)
+	_, err := h.Client.Review.DeleteReview(c, &req)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return

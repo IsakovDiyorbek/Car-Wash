@@ -9,6 +9,7 @@ import (
 	"github.com/exam-5/Car-Wash-Booking-Service/config"
 	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
 	"github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	m "go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -32,8 +33,8 @@ func TestBookingRepo(t *testing.T) {
 	}
 
 	mongoDB := client.Database(cfg.MongoDatabase)
-
-	bookingRepo := mongo.NewBookingRepo(mongoDB)
+	redis := redis.Client{}
+	bookingRepo := mongo.NewBookingRepo(mongoDB, &redis)
 
 	t.Run("CreateBooking", func(t *testing.T) {
 

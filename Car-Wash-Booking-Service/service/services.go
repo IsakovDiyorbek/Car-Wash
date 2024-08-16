@@ -41,3 +41,7 @@ func (s *ServicesService) ListServices(ctx context.Context, req *carwash.ListSer
 func (s *ServicesService) SearchServices(ctx context.Context, req *carwash.SearchServicesRequest) (*carwash.SearchServicesResponse, error) {
 	return s.storage.Service().SearchServices(req)
 }
+
+func (s *ServicesService) GetPopularService(ctx context.Context, req *carwash.PopularServiceRequest) (*carwash.PopularServicesResponse, error) {
+	return s.storage.Service().GetPopularService(req)
+}

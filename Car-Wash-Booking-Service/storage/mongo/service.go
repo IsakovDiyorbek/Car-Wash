@@ -2,10 +2,12 @@ package mongo
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"time"
 
 	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/go-redis/redis/v8"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -15,11 +17,13 @@ import (
 
 type ServiceRepo struct {
 	mongo *mongo.Collection
+	redis *redis.Client
 }
 
-func NewServiceRepo(db *mongo.Database) *ServiceRepo {
+func NewServiceRepo(db *mongo.Database, redis *redis.Client) *ServiceRepo {
 	return &ServiceRepo{
 		mongo: db.Collection("services"),
+		redis: redis,
 	}
 }
 
@@ -220,4 +224,26 @@ func (s *ServiceRepo) SearchServices(req *pb.SearchServicesRequest) (*pb.SearchS
 	}
 
 	return &pb.SearchServicesResponse{Services: services}, nil
+}
+
+func (s *ServiceRepo) GetPopularService(req *pb.PopularServiceRequest) (*pb.PopularServicesResponse, error) {
+	offset := int(req.Offset)
+	limit := int(req.Limit)
+	start := offset
+	stop := offset + limit - 1
+	services, err := s.redis.ZRevRangeWithScores(context.TODO(), "popular_services", int64(start), int64(stop)).Result()
+	if err != nil {
+		return nil, fmt.Errorf("error fetching data from Redis: %w", err)
+	}
+
+	var popularServices pb.PopularServicesResponse
+	for _, service := range services {
+		popularService := &pb.PopularService{
+			ServiceId: service.Member.(string),
+			Score:     service.Score,
+		}
+		popularServices.Services = append(popularServices.Services, popularService)
+	}
+
+	return &popularServices, nil
 }

@@ -19,6 +19,7 @@ type BookingI interface {
 	UpdateBooking(req *pb.UpdateBookingRequest) (*pb.UpdateBookingResponse, error)
 	DeleteBooking(req *pb.DeleteBookingRequest) (*pb.DeleteBookingResponse, error)
 	ListBookings(req *pb.ListBookingsRequest) (*pb.ListBookingsResponse, error)
+
 }
 
 type PaymentI interface {
@@ -54,6 +55,8 @@ type Service interface {
 	DeleteService(*pb.DeleteServiceRequest) (*pb.DeleteServiceResponse, error)
 	ListServices(*pb.ListServicesRequest) (*pb.ListServicesResponse, error)
 	SearchServices(*pb.SearchServicesRequest) (*pb.SearchServicesResponse, error)
+	GetPopularService(req *pb.PopularServiceRequest) (*pb.PopularServicesResponse, error)
+
 
 }
 

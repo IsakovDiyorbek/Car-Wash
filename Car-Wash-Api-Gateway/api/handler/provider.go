@@ -175,12 +175,14 @@ func (h *Handler) UpdateProvider(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "Missing provider ID"})
 		return
 	}
-
-	_, err := h.Client.User.GetProfile(c, &user.GetProfileRequest{Id: req.UserId})
-	if err != nil {
-		c.JSON(400, gin.H{"error": "Provider not found"})
-		return
+	if req.UserId != "" {
+		_, err := h.Client.User.GetProfile(c, &user.GetProfileRequest{Id: req.UserId})
+		if err != nil {
+			c.JSON(400, gin.H{"error": "Provider not found"})
+			return
+		}
 	}
+
 	count := 1
 	for _, serviceId := range req.ServiceId {
 		_, err := h.Client.Service.GetService(c, &carwash.GetServiceRequest{Id: serviceId})
@@ -191,7 +193,7 @@ func (h *Handler) UpdateProvider(c *gin.Context) {
 		count++
 	}
 
-	_, err = h.Client.Provider.UpdateProvider(c, &req)
+	_, err := h.Client.Provider.UpdateProvider(c, &req)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return
@@ -214,7 +216,6 @@ func (h *Handler) UpdateProvider(c *gin.Context) {
 func (h *Handler) DeleteProvider(c *gin.Context) {
 	req := carwash.DeleteProviderRequest{}
 	req.Id = c.Query("id")
-
 
 	_, err := h.Client.Provider.DeleteProvider(c, &req)
 	if err != nil {
@@ -246,15 +247,14 @@ func (h *Handler) GetProvider(c *gin.Context) {
 	c.JSON(200, "Delete Provider")
 }
 
-
 // @Summary Search providers
 // @Description Search providers by company name or description
 // @Tags Providers
 // @Accept json
 // @Produce json
 // @Security BearerAuth
-// @Param CompanyName query string true "Company Name" 
-// @Param Description query string true "Description" 
+// @Param CompanyName query string true "Company Name"
+// @Param Description query string true "Description"
 // @Success 200 {object} carwash.SearchProvidersResponse
 // @Failure 400 {object} error
 // @Failure 500 {object} error

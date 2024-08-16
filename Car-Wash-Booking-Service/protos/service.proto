@@ -11,6 +11,7 @@ service ServicesService {
     rpc DeleteService(DeleteServiceRequest) returns (DeleteServiceResponse);
     rpc ListServices(ListServicesRequest) returns (ListServicesResponse);
     rpc SearchServices(SearchServicesRequest) returns (SearchServicesResponse);
+    rpc GetPopularService(PopularServiceRequest) returns (PopularServicesResponse);
 }
 
 
@@ -80,3 +81,16 @@ message SearchServicesResponse{
     repeated Services services = 1;
 }
 
+message PopularServiceRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message PopularService {
+    string service_id = 1;
+    double score = 2;     
+}
+
+message PopularServicesResponse {
+    repeated PopularService services = 1;
+}

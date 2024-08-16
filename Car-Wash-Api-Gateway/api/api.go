@@ -29,16 +29,15 @@ func NewGin() *gin.Engine {
 	r.PUT("/services/:id", h.UpdateService)
 	r.DELETE("/services/:id", h.DeleteService)
 	r.GET("/services/search", h.SearchServices)
+	r.GET("/services/popular", h.PopularServices)
 
 	r.POST("/providers", h.CreateProvider)
 	r.GET("/providers", h.GetProviders)
 	r.GET("/providers/:id", h.GetProvider)
 	r.PUT("/providers/:id", h.UpdateProvider)
 	r.DELETE("/providers/:id", h.DeleteProvider)
-	
+
 	r.GET("/providers/search", h.SearchProviders)
-
-
 
 	r.POST("/bookings", h.CreateBooking)
 	r.GET("/bookings", h.GetBookings)
@@ -57,7 +56,7 @@ func NewGin() *gin.Engine {
 	r.GET("/payments", h.ListPayments)
 	r.GET("/payments/:id", h.GetPayment)
 
-	r.GET("/notifications/:id", h.GetNotigication)
+	r.GET("/notifications/:booking_id", h.GetNotigication)
 
 	return r
 }

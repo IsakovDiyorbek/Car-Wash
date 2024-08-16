@@ -8,6 +8,7 @@ import (
 	"time"
 
 	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/go-redis/redis/v8"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,11 +17,13 @@ import (
 
 type BookingRepo struct {
 	collection *mongo.Collection
+	redis      *redis.Client
 }
 
-func NewBookingRepo(db *mongo.Database) *BookingRepo {
+func NewBookingRepo(db *mongo.Database, redis *redis.Client) *BookingRepo {
 	return &BookingRepo{
 		collection: db.Collection("bookings"),
+		redis: redis,
 	}
 }
 
@@ -43,6 +46,13 @@ func (r *BookingRepo) CreateBooking(req *pb.CreateBookingRequest) (*pb.CreateBoo
 		slog.Error("Error creating booking", err)
 		return nil, err
 	}
+
+	_, err = r.redis.ZIncrBy(context.TODO(), "popular_services", 1, req.ServiceId).Result()
+	if err != nil {
+		slog.Error("Error updating Redis ZSET", err)
+		return nil, err
+	}
+
 	return &pb.CreateBookingResponse{}, nil
 }
 

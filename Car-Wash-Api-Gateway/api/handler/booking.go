@@ -170,22 +170,24 @@ func (h *Handler) UpdateBooking(c *gin.Context) {
 		}
 		req.TotalPrice = float32(totalPriceFloat)
 	}
-
-	_, err := h.Client.Provider.GetProvider(c, &carwash.GetProviderRequest{Id: req.ProviderId})
-	if err != nil {
-		c.JSON(400, gin.H{"Provider not found": err.Error()})
-		return
+	if req.ProviderId != "" {
+		_, err := h.Client.Provider.GetProvider(c, &carwash.GetProviderRequest{Id: req.ProviderId})
+		if err != nil {
+			c.JSON(400, gin.H{"Provider not found": err.Error()})
+			return
+		}
 	}
 
-	// check if service exist
-	_, err = h.Client.Service.GetService(c, &carwash.GetServiceRequest{Id: req.ServiceId})
-	if err != nil {
-		c.JSON(400, gin.H{"Service not found": err.Error()})
-		return
+	if req.ServiceId != "" {
+		_, err := h.Client.Service.GetService(c, &carwash.GetServiceRequest{Id: req.ServiceId})
+		if err != nil {
+			c.JSON(400, gin.H{"Service not found": err.Error()})
+			return
+		}
 	}
 
 	input, err := json.Marshal(req)
-	err = h.Client.Kafka.ProduceMessages("up-booking", input)
+	err = h.Client.Kafka.ProduceMessages("update-booking", input)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"error": err.Error(),
@@ -193,7 +195,6 @@ func (h *Handler) UpdateBooking(c *gin.Context) {
 		log.Println("cannot produce messages via kafka", err)
 		return
 	}
-
 
 	c.JSON(200, gin.H{"message": "Booking updated"})
 }
@@ -213,7 +214,7 @@ func (h *Handler) DeleteBooking(c *gin.Context) {
 	id := c.Query("id")
 
 	input, err := json.Marshal(id)
-	err = h.Client.Kafka.ProduceMessages("dl-booking", input)
+	err = h.Client.Kafka.ProduceMessages("delete-booking", input)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"error": err.Error(),
@@ -221,7 +222,6 @@ func (h *Handler) DeleteBooking(c *gin.Context) {
 		log.Println("cannot produce messages via kafka", err)
 		return
 	}
-
 
 	c.JSON(200, gin.H{"message": "Booking deleted"})
 }
@@ -259,3 +259,5 @@ func (h *Handler) ConfirmBooking(c *gin.Context) {
 
 	c.JSON(200, gin.H{"message": "Booking confirmed"})
 }
+
+
