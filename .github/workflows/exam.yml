@@ -31,18 +31,18 @@ jobs:
 
           cd Car-Wash-Api-Gateway || exit
           sudo docker compose down || echo "Failed to bring down Car-Wash-Api-Gateway"
-          sudo docker compose up --build || echo "Failed to build Car-Wash-Api-Gateway"
+          sudo docker compose up -build -d || echo "Failed to build Car-Wash-Api-Gateway"
           sudo docker compose down || echo "Failed to bring down Car-Wash-Api-Gateway"
-          sudo docker compose up || echo "Failed to start Car-Wash-Api-Gateway"
+          sudo docker compose up -d || echo "Failed to start Car-Wash-Api-Gateway"
 
           cd ../Car-Wash-Auth-Service || exit
           sudo docker compose down || echo "Failed to bring down Car-Wash-Auth-Service"
-          sudo docker compose up --build || echo "Failed to build Car-Wash-Auth-Service"
+          sudo docker compose up --build -d  || echo "Failed to build Car-Wash-Auth-Service"
           sudo docker compose down || echo "Failed to bring down Car-Wash-Auth-Service"
-          sudo docker compose up || echo "Failed to start Car-Wash-Auth-Service"
+          sudo docker compose up -d || echo "Failed to start Car-Wash-Auth-Service"
 
           cd ../Car-Wash-Booking-Service || exit
           sudo docker compose down || echo "Failed to bring down Car-Wash-Booking-Service"
-          sudo docker compose up --build || echo "Failed to build Car-Wash-Booking-Service"
+          sudo docker compose up --build -d  || echo "Failed to build Car-Wash-Booking-Service"
           sudo docker compose down || echo "Failed to bring down Car-Wash-Booking-Service"
-          sudo docker compose up || echo "Failed to start Car-Wash-Booking-Service"
+          sudo docker compose up -d || echo "Failed to start Car-Wash-Booking-Service"
