@@ -24,7 +24,7 @@ jobs:
         script: |
           pwd
           echo "BOSHLANDIIIIIIIIIIIIIIIIIIIIIIIIIIi"
-          git clone git@github.com:IsakovDiyorbek/Exam-5.git
+          git clone git@github.com:IsakovDiyorbek/Car-Wash.git
           
 
           cd Exam-5 || exit
