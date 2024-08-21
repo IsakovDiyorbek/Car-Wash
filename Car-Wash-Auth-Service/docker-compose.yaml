@@ -3,12 +3,12 @@ version: '3.9'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.4
-    container_name: zookeeper_auht_car_wash
+    container_name: zookeeper_auth_car_wash
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - 2185:2181
+      - 2181:2181
     networks:
       - GLhost
 
@@ -18,8 +18,8 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - 9091:9092
-      - 29091:29092
+      - 9092:9092
+      - 29092:29092
     networks:
       - GLhost
     environment:
@@ -27,6 +27,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENER_NAMES: PLAINTEXT,PLAINTEXT_HOST
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
@@ -36,9 +37,7 @@ services:
       - GLhost
     volumes:
       - ./migrations:/migrations
-    command: [ "-path", "/migrations", "-database",  
-                "postgres://postgres:20005@auth:5432/auth_exam?sslmode=disable", 
-                "up" ]
+    command: [ "-path", "/migrations", "-database", "postgres://postgres:20005@postgres-db:5432/auth_exam?sslmode=disable", "up" ]
     depends_on:
       - postgres-db
 
@@ -46,22 +45,21 @@ services:
     container_name: auth
     image: postgres:latest
     environment:
-      PGUSER: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 20005
-      PGDATA: /data/postgres
-      POSTGRES_DB: auth_exam 
+      POSTGRES_DB: auth_exam
     volumes:
-      - db:/auth-database/auth-memory
+      - db:/auth-database
     ports:
       - "5434:5432"
     networks:
       - GLhost
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -d auth_exam"]
       interval: 30s
       timeout: 10s
-      retries: 5   
+      retries: 5
 
   auth_service:
     container_name: auth_service
@@ -84,7 +82,6 @@ services:
     networks:
       - GLhost
 
-# Docker Networks
 networks:
   GLhost:
     external: true
