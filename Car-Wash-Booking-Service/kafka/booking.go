@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/service"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/service"
 )
 
 func BookingHandler(bookingservice *service.BookingService) func(message []byte) {
@@ -22,7 +22,7 @@ func BookingHandler(bookingservice *service.BookingService) func(message []byte)
 			log.Printf("Cannot create booking via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created booking: %+v",respbooking)
+		log.Printf("Created booking: %+v", respbooking)
 	}
 }
 
@@ -39,7 +39,7 @@ func UpdateHandler(bookservice *service.BookingService) func(message []byte) {
 			log.Printf("Cannot create booking via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created booking: %+v",respbooking)
+		log.Printf("Created booking: %+v", respbooking)
 	}
 }
 func DeleteBookingHandler(bookingservice *service.BookingService) func(message []byte) {
@@ -55,6 +55,6 @@ func DeleteBookingHandler(bookingservice *service.BookingService) func(message [
 			log.Printf("Cannot create booking via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created booking: %+v",respbooking)
+		log.Printf("Created booking: %+v", respbooking)
 	}
 }

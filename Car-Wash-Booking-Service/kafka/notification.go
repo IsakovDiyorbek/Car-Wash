@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/service"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/service"
 )
 
 func NotifiactionHandler(notificationservice *service.NotificationService) func(message []byte) {
@@ -22,6 +22,6 @@ func NotifiactionHandler(notificationservice *service.NotificationService) func(
 			log.Printf("Cannot create notification via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created notification: %+v",respnotification)
+		log.Printf("Created notification: %+v", respnotification)
 	}
 }

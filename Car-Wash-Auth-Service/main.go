@@ -6,15 +6,15 @@ import (
 	"log/slog"
 	"net"
 
-	pr "github.com/exam-5/Car-Wash-Auth-Service/api/kafka"
-	"github.com/exam-5/Car-Wash-Auth-Service/api"
-	"github.com/exam-5/Car-Wash-Auth-Service/api/handler"
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
-	"github.com/exam-5/Car-Wash-Auth-Service/service"
-	"github.com/exam-5/Car-Wash-Auth-Service/storage/postgres"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api/handler"
+	pr "github.com/Car-Wash/Car-Wash-Auth-Service/api/kafka"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/service"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/storage/postgres"
 
-	consumer "github.com/exam-5/Car-Wash-Auth-Service/kafka"
+	consumer "github.com/Car-Wash/Car-Wash-Auth-Service/kafka"
 
 	"github.com/go-redis/redis/v8"
 	"google.golang.org/grpc"

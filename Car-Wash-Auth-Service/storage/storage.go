@@ -3,8 +3,8 @@ package storage
 import (
 	"context"
 
-	pb "github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
-	pu "github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
+	pb "github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
+	pu "github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
 )
 
 type StorageI interface {
@@ -24,6 +24,4 @@ type User interface {
 	UpdateProfile(ctx context.Context, req *pu.UpdateProfileRequest) (*pu.UpdateProfileResponse, error)
 	ChangePassword(ctx context.Context, req *pu.ChangePasswordRequest) (*pu.ChangePasswordResponse, error)
 	GetAllUsers(ctx context.Context, req *pu.GetAllUsersRequest) (*pu.GetAllUsersResponse, error)
-
-
 }

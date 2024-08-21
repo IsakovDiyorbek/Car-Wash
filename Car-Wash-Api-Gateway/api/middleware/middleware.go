@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/api/token"
 	"github.com/casbin/casbin/v2"
-	"github.com/exam-5/Car-Wash-Api-Gateway/api/token"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,26 +1,22 @@
 package service
 
-
-
 import (
 	"context"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage"
 )
 
-
-
-type ProviderService struct{
+type ProviderService struct {
 	storage storage.StorageI
 	carwash.UnimplementedProviderServiceServer
 }
 
-func NewProviderService(storage storage.StorageI) *ProviderService{
+func NewProviderService(storage storage.StorageI) *ProviderService {
 	return &ProviderService{storage: storage}
 }
 
-func (s *ProviderService) CreateProvider(ctx context.Context,req *carwash.CreateProviderRequest) (*carwash.CreateProviderResponse, error) {
+func (s *ProviderService) CreateProvider(ctx context.Context, req *carwash.CreateProviderRequest) (*carwash.CreateProviderResponse, error) {
 	return s.storage.Provider().CreateProvider(req)
 }
 

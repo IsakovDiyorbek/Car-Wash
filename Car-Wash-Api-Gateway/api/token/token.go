@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/exam-5/Car-Wash-Api-Gateway/config"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/config"
 	"github.com/golang-jwt/jwt"
 	"github.com/spf13/cast"
 	"golang.org/x/crypto/bcrypt"

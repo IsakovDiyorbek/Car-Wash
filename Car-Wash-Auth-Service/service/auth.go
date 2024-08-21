@@ -2,8 +2,9 @@ package service
 
 import (
 	"context"
-	"github.com/exam-5/Car-Wash-Auth-Service/storage"
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
+
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/storage"
 )
 
 type AuthService struct {

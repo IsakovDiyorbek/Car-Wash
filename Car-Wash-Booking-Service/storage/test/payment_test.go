@@ -6,9 +6,9 @@ import (
 	"log"
 	"testing"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/config"
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/config"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage/mongo"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
@@ -58,7 +58,7 @@ func TestPaymentRepo(t *testing.T) {
 		createResp, err := paymentRepo.CreatePayment(reqCreate)
 		assert.NoError(t, err, "CreatePayment funksiyasida xato yuz berdi")
 		assert.NotNil(t, createResp, "CreatePayment javobi nol bo'lmasligi kerak")
-	
+
 		// Retrieve the payment
 		filter := bson.M{"transaction_id": "1258885699"}
 		var result bson.M
@@ -70,13 +70,12 @@ func TestPaymentRepo(t *testing.T) {
 		if !ok {
 			t.Fatalf("Failed to convert _id to ObjectID")
 		}
-	
+
 		reqGet := &carwash.GetPaymentRequest{Id: paymentID.Hex()}
 		resp, err := paymentRepo.GetPayment(reqGet)
 		assert.NoError(t, err, "GetPayment funksiyasida xato yuz berdi")
 		assert.NotNil(t, resp, "GetPayment javobi nol bo'lmasligi kerak")
 	})
-	
 
 	t.Run("ListPayments", func(t *testing.T) {
 		// Create payments to list
@@ -102,6 +101,5 @@ func TestPaymentRepo(t *testing.T) {
 		assert.NoError(t, err, "ListPayments funksiyasida xato yuz berdi")
 		assert.Greater(t, len(resp.Payments), 1, "ListPayments javobi kerakli miqdordagi to'lovlarni qaytarishi kerak")
 	})
-
 
 }

@@ -3,22 +3,20 @@ package service
 import (
 	"context"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage"
 )
 
-
-
-type ServicesService struct{
+type ServicesService struct {
 	storage storage.StorageI
 	carwash.UnimplementedServicesServiceServer
 }
 
-func NewServicesService(storage storage.StorageI) *ServicesService{
+func NewServicesService(storage storage.StorageI) *ServicesService {
 	return &ServicesService{storage: storage}
 }
 
-func (s *ServicesService) CreateService(ctx context.Context,req *carwash.CreateServiceRequest) (*carwash.CreateServiceResponse, error) {
+func (s *ServicesService) CreateService(ctx context.Context, req *carwash.CreateServiceRequest) (*carwash.CreateServiceResponse, error) {
 	return s.storage.Service().CreateService(req)
 }
 

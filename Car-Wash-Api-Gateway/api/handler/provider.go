@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/user"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/user"
 	"github.com/gin-gonic/gin"
 )
 

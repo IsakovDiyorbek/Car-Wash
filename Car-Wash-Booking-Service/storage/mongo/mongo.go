@@ -4,22 +4,22 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/config"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/config"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage"
 	"github.com/go-redis/redis/v8"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type StorageM struct {
-	mongo     *mongo.Database
-	Services  storage.Service
-	Payments  storage.PaymentI
-	Reviews   storage.Review
-	Bookings  storage.BookingI
-	Providers storage.ProviderI
+	mongo         *mongo.Database
+	Services      storage.Service
+	Payments      storage.PaymentI
+	Reviews       storage.Review
+	Bookings      storage.BookingI
+	Providers     storage.ProviderI
 	Notifications storage.NotificationI
-	Redis *redis.Client
+	Redis         *redis.Client
 }
 
 func SetupMongoDBConnection(cfg config.Config, redis *redis.Client) (storage.StorageI, error) {
@@ -39,12 +39,12 @@ func SetupMongoDBConnection(cfg config.Config, redis *redis.Client) (storage.Sto
 	mongoDB := client.Database(cfg.MongoDatabase)
 
 	return &StorageM{
-		mongo:     mongoDB,
-		Services:  NewServiceRepo(mongoDB, redis),
-		Providers: NewProviderRepo(mongoDB),
-		Bookings:  NewBookingRepo(mongoDB, redis),
-		Reviews:   NewReviewRepo(mongoDB),
-		Payments:  NewPaymentRepo(mongoDB),
+		mongo:         mongoDB,
+		Services:      NewServiceRepo(mongoDB, redis),
+		Providers:     NewProviderRepo(mongoDB),
+		Bookings:      NewBookingRepo(mongoDB, redis),
+		Reviews:       NewReviewRepo(mongoDB),
+		Payments:      NewPaymentRepo(mongoDB),
 		Notifications: NewNotificationManager(mongoDB),
 	}, nil
 }
@@ -64,7 +64,7 @@ func (s *StorageM) Provider() storage.ProviderI {
 }
 
 func (s *StorageM) Booking() storage.BookingI {
-	if s.Bookings == nil { 
+	if s.Bookings == nil {
 		s.Bookings = NewBookingRepo(s.mongo, s.Redis)
 	}
 	return s.Bookings

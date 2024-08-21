@@ -5,11 +5,11 @@ import (
 	"log/slog"
 	"net"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/config"
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/kafka"
-	"github.com/exam-5/Car-Wash-Booking-Service/service"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/config"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/kafka"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/service"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage/mongo"
 	"github.com/go-redis/redis/v8"
 	"google.golang.org/grpc"
 )

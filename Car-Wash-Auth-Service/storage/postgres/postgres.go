@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/config"
-	"github.com/exam-5/Car-Wash-Auth-Service/storage"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/config"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/storage"
 	"github.com/go-redis/redis/v8"
 
 	_ "github.com/lib/pq"

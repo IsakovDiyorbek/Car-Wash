@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	m "github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	m "github.com/Car-Wash/Car-Wash-Booking-Service/storage/mongo"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

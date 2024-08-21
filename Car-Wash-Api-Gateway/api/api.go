@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/exam-5/Car-Wash-Api-Gateway/api/handler"
-	"github.com/exam-5/Car-Wash-Api-Gateway/api/middleware"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/api/handler"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/api/middleware"
 	"github.com/gin-gonic/gin"
 
 	swaggerFiles "github.com/swaggo/files"

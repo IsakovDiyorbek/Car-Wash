@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"time"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
 	"github.com/go-redis/redis/v8"
 
 	"go.mongodb.org/mongo-driver/bson"

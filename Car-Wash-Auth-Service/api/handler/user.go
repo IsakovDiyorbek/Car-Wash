@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
 	"github.com/gin-gonic/gin"
 )
 

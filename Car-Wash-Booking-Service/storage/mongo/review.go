@@ -7,7 +7,7 @@ import (
 	"log/slog"
 	"time"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -60,16 +60,13 @@ func (r *ReviewRepo) GetReview(req *pb.GetReviewRequest) (*pb.GetReviewResponse,
 		return nil, err
 	}
 
-
 	reviewID, ok := result["_id"].(primitive.ObjectID)
 	if !ok {
 		return nil, errors.New("Failed to convert _id to ObjectID")
 	}
 
-
-
 	review := &pb.Review{
-		Id:         reviewID.Hex(), 
+		Id:         reviewID.Hex(),
 		BookingId:  getString(result["booking_id"]),
 		UserId:     getString(result["user_id"]),
 		ProviderId: getString(result["provider_id"]),
@@ -83,10 +80,6 @@ func (r *ReviewRepo) GetReview(req *pb.GetReviewRequest) (*pb.GetReviewResponse,
 		Review: review,
 	}, nil
 }
-
-
-
-
 
 func (r *ReviewRepo) DeleteReview(req *pb.DeleteReviewRequest) (*pb.DeleteReviewResponse, error) {
 	id, err := primitive.ObjectIDFromHex(req.Id)
@@ -137,12 +130,11 @@ func (r *ReviewRepo) ListReviews(req *pb.ListReviewsRequest) (*pb.ListReviewsRes
 		if err := cursor.Decode(&res); err != nil {
 			return nil, err
 		}
-		
+
 		reviewID, ok := res["_id"].(primitive.ObjectID)
 		if !ok {
 			return nil, errors.New("Failed to convert _id to ObjectID")
 		}
-
 
 		review := &pb.Review{
 			Id:         reviewID.Hex(),
@@ -209,8 +201,3 @@ func (r *ReviewRepo) UpdateReview(req *pb.UpdateReviewRequest) (*pb.UpdateReview
 
 	return &pb.UpdateReviewResponse{}, nil
 }
-
-
-
-
-

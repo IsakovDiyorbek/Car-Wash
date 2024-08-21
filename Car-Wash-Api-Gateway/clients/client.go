@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/carwash"
+	kafka "github.com/Car-Wash/Car-Wash-Api-Gateway/kafka/producer"
 	"github.com/casbin/casbin/v2"
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/auth"
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
-	kafka "github.com/exam-5/Car-Wash-Api-Gateway/kafka/producer"
 
-	u "github.com/exam-5/Car-Wash-Api-Gateway/genproto/user"
+	u "github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/user"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

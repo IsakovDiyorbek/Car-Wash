@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
-	"github.com/exam-5/Car-Wash-Auth-Service/service"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/service"
 )
 
 func AuhtRegister(Auth *service.AuthService) func(message []byte) {

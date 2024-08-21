@@ -7,7 +7,7 @@ import (
 
 	"log/slog"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -54,9 +54,6 @@ func (r *ProviderRepo) CreateProvider(req *pb.CreateProviderRequest) (*pb.Create
 		slog.Error("Error creating provider", err)
 		return nil, err
 	}
-
-
-
 
 	return &pb.CreateProviderResponse{}, nil
 }
@@ -286,7 +283,6 @@ func (r *ProviderRepo) ListProviders(req *pb.ListProvidersRequest) (*pb.ListProv
 	}, nil
 }
 
-
 func (p *ProviderRepo) SearchProviders(req *pb.SearchProvidersRequest) (*pb.SearchProvidersResponse, error) {
 
 	var providers []*pb.Provider
@@ -340,7 +336,6 @@ func (p *ProviderRepo) SearchProviders(req *pb.SearchProvidersRequest) (*pb.Sear
 	if err := cursor.Err(); err != nil {
 		return nil, err
 	}
-
 
 	return &pb.SearchProvidersResponse{Providers: providers}, nil
 }

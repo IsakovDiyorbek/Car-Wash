@@ -5,7 +5,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/carwash"
 	"github.com/gin-gonic/gin"
 )
 

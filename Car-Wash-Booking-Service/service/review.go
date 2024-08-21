@@ -1,25 +1,22 @@
 package service
 
-
 import (
 	"context"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage"
 )
 
-
-
-type ReviewService struct{
+type ReviewService struct {
 	storage storage.StorageI
 	carwash.UnimplementedReviewServiceServer
 }
 
-func NewReviewService(storage storage.StorageI) *ReviewService{
+func NewReviewService(storage storage.StorageI) *ReviewService {
 	return &ReviewService{storage: storage}
 }
 
-func (s *ReviewService) CreateReview(ctx context.Context,req *carwash.CreateReviewRequest) (*carwash.CreateReviewResponse, error) {
+func (s *ReviewService) CreateReview(ctx context.Context, req *carwash.CreateReviewRequest) (*carwash.CreateReviewResponse, error) {
 	return s.storage.Review().CreateReview(req)
 }
 

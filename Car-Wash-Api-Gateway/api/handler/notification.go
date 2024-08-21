@@ -1,11 +1,9 @@
 package handler
 
 import (
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/carwash"
 	"github.com/gin-gonic/gin"
 )
-
-
 
 // @Summary Get all notifications
 // @Description Get all notifications
@@ -18,7 +16,7 @@ import (
 // @Failure 400 {object} error
 // @Failure 500 {object} error
 // @Router /notifications/{id} [get]
-func (h *Handler) GetNotigication(c *gin.Context){
+func (h *Handler) GetNotigication(c *gin.Context) {
 	req := carwash.GetNotificationsRequest{}
 	req.BookingId = c.Query("booking_id")
 
@@ -29,86 +27,3 @@ func (h *Handler) GetNotigication(c *gin.Context){
 	}
 	c.JSON(200, res)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

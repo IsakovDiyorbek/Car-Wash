@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/exam-5/Car-Wash-Api-Gateway/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/genproto/carwash"
 	"github.com/gin-gonic/gin"
 )
 
@@ -224,12 +224,6 @@ func (h *Handler) SearchServices(c *gin.Context) {
 	c.JSON(200, res)
 }
 
-
-
-
-
-
-
 // @Summary Get popular services
 // @Description Get popular services
 // @Tags Services
@@ -242,12 +236,12 @@ func (h *Handler) SearchServices(c *gin.Context) {
 // @Failure 400 {object} error
 // @Failure 500 {object} error
 // @Router /services/popular [get]
-func (h *Handler) PopularServices(c *gin.Context){
+func (h *Handler) PopularServices(c *gin.Context) {
 	req := carwash.PopularServiceRequest{}
 	limitStr := c.Query("limit")
 	if limitStr != "" {
 		limitInt, err := strconv.Atoi(limitStr)
-		if err != nil{
+		if err != nil {
 			c.JSON(400, "Error of parse limit")
 		}
 
@@ -257,7 +251,7 @@ func (h *Handler) PopularServices(c *gin.Context){
 	offsetStr := c.Query("limit")
 	if offsetStr != "" {
 		offsetInt, err := strconv.Atoi(offsetStr)
-		if err != nil{
+		if err != nil {
 			c.JSON(400, "Error of parse limit")
 		}
 
@@ -265,10 +259,10 @@ func (h *Handler) PopularServices(c *gin.Context){
 	}
 
 	res, err := h.Client.Service.GetPopularService(c, &carwash.PopularServiceRequest{
-		Limit: req.Limit,
+		Limit:  req.Limit,
 		Offset: req.Offset,
 	})
-	if err != nil{
+	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return
 	}

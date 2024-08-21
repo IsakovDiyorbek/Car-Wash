@@ -6,7 +6,7 @@ import (
 	"errors"
 	"log"
 
-	pb "github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
+	pb "github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
 )
 
 type UserRepo struct {
@@ -21,8 +21,8 @@ func (p *UserRepo) GetProfile(ctx context.Context, req *pb.GetProfileRequest) (*
 	var query string
 	var args []interface{}
 	if req.Email == "" && req.Id == "" {
-        return nil, errors.New("either email or id must be provided")
-    }
+		return nil, errors.New("either email or id must be provided")
+	}
 	if req.Email != "" {
 		query = `
             SELECT id, username, email, full_name, role, created_at
@@ -43,7 +43,7 @@ func (p *UserRepo) GetProfile(ctx context.Context, req *pb.GetProfileRequest) (*
 
 	var user pb.GetProfileResponse
 	err := p.db.QueryRowContext(ctx, query, args...).Scan(
-		&user.Id, &user.Username, &user.Email, &user.FullName, &user.Role,&user.CreatedAt,
+		&user.Id, &user.Username, &user.Email, &user.FullName, &user.Role, &user.CreatedAt,
 	)
 	if err != nil {
 		log.Printf("Error getting profile: %v\n", err)
@@ -114,4 +114,3 @@ func (p *UserRepo) GetAllUsers(ctx context.Context, req *pb.GetAllUsersRequest) 
 	return &pb.GetAllUsersResponse{Users: users}, nil
 
 }
-

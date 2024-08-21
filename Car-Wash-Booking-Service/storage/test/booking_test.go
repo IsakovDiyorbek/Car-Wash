@@ -6,9 +6,9 @@ import (
 	"log"
 	"testing"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/config"
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/config"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage/mongo"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	m "go.mongodb.org/mongo-driver/mongo"
@@ -98,7 +98,6 @@ func TestBookingRepo(t *testing.T) {
 		_, err := bookingRepo.UpdateBooking(updatedBooking)
 		assert.NoError(t, err, "UpdateBooking funksiyasida xato yuz berdi")
 
-
 		_, err = bookingRepo.GetBooking(&carwash.GetBookingRequest{Id: "66bd9994b671b4f10b3ff5cd"})
 		assert.NoError(t, err, "GetBooking funksiyasida xato yuz berdi")
 
@@ -114,7 +113,7 @@ func TestBookingRepo(t *testing.T) {
 	})
 
 	t.Run("ListBookings", func(t *testing.T) {
-	
+
 		userID := uuid.NewString()
 		testBookings := []*carwash.CreateBookingRequest{
 			{

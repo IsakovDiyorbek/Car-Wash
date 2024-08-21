@@ -7,7 +7,7 @@ import (
 	"log/slog"
 	"time"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
 	"github.com/go-redis/redis/v8"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -23,7 +23,7 @@ type BookingRepo struct {
 func NewBookingRepo(db *mongo.Database, redis *redis.Client) *BookingRepo {
 	return &BookingRepo{
 		collection: db.Collection("bookings"),
-		redis: redis,
+		redis:      redis,
 	}
 }
 

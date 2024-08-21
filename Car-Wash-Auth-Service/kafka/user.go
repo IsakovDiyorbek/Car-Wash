@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
-	"github.com/exam-5/Car-Wash-Auth-Service/service"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/service"
 )
 
 func Change(User *service.UserService) func(message []byte) {

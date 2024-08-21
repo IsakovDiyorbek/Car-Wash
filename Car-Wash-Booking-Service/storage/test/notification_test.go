@@ -6,9 +6,9 @@ import (
 	"log"
 	"testing"
 
-	"github.com/exam-5/Car-Wash-Booking-Service/config"
-	"github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/storage/mongo"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/config"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/storage/mongo"
 	"github.com/stretchr/testify/assert"
 	m "go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

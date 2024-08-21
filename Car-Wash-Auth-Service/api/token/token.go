@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/config"
-	pb "github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/config"
+	pb "github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
 	"github.com/golang-jwt/jwt"
 	"github.com/spf13/cast"
 	"golang.org/x/crypto/bcrypt"

@@ -8,8 +8,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/api/token"
-	pb "github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api/token"
+	pb "github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 )

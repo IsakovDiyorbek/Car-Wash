@@ -7,9 +7,9 @@ import (
 
 	"log"
 
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api/token"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/config"
 	"github.com/casbin/casbin/v2"
-	"github.com/exam-5/Car-Wash-Auth-Service/api/token"
-	"github.com/exam-5/Car-Wash-Auth-Service/config"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 )

@@ -1,11 +1,10 @@
 package storage
 
 import (
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
 )
 
-
-type StorageI interface{
+type StorageI interface {
 	Provider() ProviderI
 	Review() Review
 	Service() Service
@@ -19,7 +18,6 @@ type BookingI interface {
 	UpdateBooking(req *pb.UpdateBookingRequest) (*pb.UpdateBookingResponse, error)
 	DeleteBooking(req *pb.DeleteBookingRequest) (*pb.DeleteBookingResponse, error)
 	ListBookings(req *pb.ListBookingsRequest) (*pb.ListBookingsResponse, error)
-
 }
 
 type PaymentI interface {
@@ -27,7 +25,6 @@ type PaymentI interface {
 	GetPayment(*pb.GetPaymentRequest) (*pb.GetPaymentResponse, error)
 	ListPayments(*pb.ListPaymentsRequest) (*pb.ListPaymentsResponse, error)
 	UpdatePayment(*pb.UpdatePaymentRequest) (*pb.UpdatePaymentResponse, error)
-
 }
 
 type ProviderI interface {
@@ -37,7 +34,6 @@ type ProviderI interface {
 	DeleteProvider(*pb.DeleteProviderRequest) (*pb.DeleteProviderResponse, error)
 	ListProviders(*pb.ListProvidersRequest) (*pb.ListProvidersResponse, error)
 	SearchProviders(*pb.SearchProvidersRequest) (*pb.SearchProvidersResponse, error)
-
 }
 
 type Review interface {
@@ -56,10 +52,7 @@ type Service interface {
 	ListServices(*pb.ListServicesRequest) (*pb.ListServicesResponse, error)
 	SearchServices(*pb.SearchServicesRequest) (*pb.SearchServicesResponse, error)
 	GetPopularService(req *pb.PopularServiceRequest) (*pb.PopularServicesResponse, error)
-
-
 }
-
 
 type NotificationI interface {
 	AddNotification(req *pb.AddNotificationRequest) (*pb.AddNotificationResponse, error)

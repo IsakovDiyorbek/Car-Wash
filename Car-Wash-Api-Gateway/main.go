@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/exam-5/Car-Wash-Api-Gateway/api"
-	_ "github.com/exam-5/Car-Wash-Api-Gateway/docs"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/api"
+	_ "github.com/Car-Wash/Car-Wash-Api-Gateway/docs"
 )
 
 func main() {

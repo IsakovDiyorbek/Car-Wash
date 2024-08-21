@@ -1,4 +1,4 @@
-module github.com/exam-5/Car-Wash-Auth-Service
+module github.com/Car-Wash/Car-Wash-Auth-Service
 
 go 1.22.2
 

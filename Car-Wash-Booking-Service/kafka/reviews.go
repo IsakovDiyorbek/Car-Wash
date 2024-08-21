@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/service"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/service"
 )
 
 func ReviewHandler(reviewservice *service.ReviewService) func(message []byte) {
@@ -22,6 +22,6 @@ func ReviewHandler(reviewservice *service.ReviewService) func(message []byte) {
 			log.Printf("Cannot create review via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created review: %+v",respreview)
+		log.Printf("Created review: %+v", respreview)
 	}
 }

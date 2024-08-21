@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/exam-5/Car-Wash-Auth-Service/api/handler"
-	middleware "github.com/exam-5/Car-Wash-Auth-Service/api/midlleware"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api/handler"
+	middleware "github.com/Car-Wash/Car-Wash-Auth-Service/api/midlleware"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -29,7 +29,6 @@ func NewGin(h handler.Handler) *gin.Engine {
 		auth.POST("/reset", h.ResetPassword)
 	}
 
-
 	user := r.Group("/user")
 	{
 		user.GET("/profile/:id", h.GetProfile)
@@ -40,4 +39,5 @@ func NewGin(h handler.Handler) *gin.Engine {
 
 	return r
 }
+
 // write swagger

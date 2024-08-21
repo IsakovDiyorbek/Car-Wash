@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/exam-5/Car-Wash-Api-Gateway/clients"
+	"github.com/Car-Wash/Car-Wash-Api-Gateway/clients"
 )
 
 type Handler struct {

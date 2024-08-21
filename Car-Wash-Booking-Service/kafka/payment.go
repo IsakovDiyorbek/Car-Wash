@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	pb "github.com/exam-5/Car-Wash-Booking-Service/genproto/carwash"
-	"github.com/exam-5/Car-Wash-Booking-Service/service"
+	pb "github.com/Car-Wash/Car-Wash-Booking-Service/genproto/carwash"
+	"github.com/Car-Wash/Car-Wash-Booking-Service/service"
 )
 
 func PaymentHandler(paymentservice *service.PaymentService) func(message []byte) {
@@ -22,6 +22,6 @@ func PaymentHandler(paymentservice *service.PaymentService) func(message []byte)
 			log.Printf("Cannot create payment via Kafka: %v", err)
 			return
 		}
-		log.Printf("Created payment: %+v",resppayment)
+		log.Printf("Created payment: %+v", resppayment)
 	}
 }

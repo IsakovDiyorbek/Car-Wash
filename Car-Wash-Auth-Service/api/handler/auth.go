@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/exam-5/Car-Wash-Auth-Service/docs"
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/user"
+	_ "github.com/Car-Wash/Car-Wash-Auth-Service/docs"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/user"
 
-	"github.com/exam-5/Car-Wash-Auth-Service/api/token"
-	"github.com/exam-5/Car-Wash-Auth-Service/genproto/auth"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/api/token"
+	"github.com/Car-Wash/Car-Wash-Auth-Service/genproto/auth"
 
 	"github.com/gin-gonic/gin"
 )
