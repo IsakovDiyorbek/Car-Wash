@@ -24,29 +24,26 @@ jobs:
         script: |
           pwd
           echo "BOSHLANDIIIIIIIIIIIIIIIIIIIIIIIIIIi"
-          git clone git@github.com:IsakovDiyorbek/Car-Wash.git
-          
+          if [ ! -d "Car-Wash" ]; then
+            git clone git@github.com:IsakovDiyorbek/Car-Wash.git
+          fi
 
-          cd Car-Wash|| exit
-          sudo docker network create car_wash || echo "Docker network already exists"
+          cd Car-Wash || exit
 
+          # Car-Wash-Api-Gateway
           cd Car-Wash-Api-Gateway || exit
           git pull origin main
           sudo docker compose down || echo "Failed to bring down Car-Wash-Api-Gateway"
-          sudo docker compose up -build -d || echo "Failed to build Car-Wash-Api-Gateway"
-          sudo docker compose down || echo "Failed to bring down Car-Wash-Api-Gateway"
-          sudo docker compose up -d || echo "Failed to start Car-Wash-Api-Gateway"
+          sudo docker compose up --build -d || echo "Failed to build Car-Wash-Api-Gateway"
 
+          # Car-Wash-Auth-Service
           cd ../Car-Wash-Auth-Service || exit
           git pull origin main
           sudo docker compose down || echo "Failed to bring down Car-Wash-Auth-Service"
           sudo docker compose up --build -d  || echo "Failed to build Car-Wash-Auth-Service"
-          sudo docker compose down || echo "Failed to bring down Car-Wash-Auth-Service"
-          sudo docker compose up -d || echo "Failed to start Car-Wash-Auth-Service"
 
+          # Car-Wash-Booking-Service
           cd ../Car-Wash-Booking-Service || exit
           git pull origin main
           sudo docker compose down || echo "Failed to bring down Car-Wash-Booking-Service"
           sudo docker compose up --build -d  || echo "Failed to build Car-Wash-Booking-Service"
-          sudo docker compose down || echo "Failed to bring down Car-Wash-Booking-Service"
-          sudo docker compose up -d || echo "Failed to start Car-Wash-Booking-Service"
