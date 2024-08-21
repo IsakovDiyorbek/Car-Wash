@@ -27,7 +27,7 @@ jobs:
           git clone git@github.com:IsakovDiyorbek/Car-Wash.git
           
 
-          cd Exam-5 || exit
+          cd Car-Wash|| exit
           sudo docker network create car_wash || echo "Docker network already exists"
 
           cd Car-Wash-Api-Gateway || exit
