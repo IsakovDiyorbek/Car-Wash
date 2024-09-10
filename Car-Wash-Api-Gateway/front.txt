@@ -1,0 +1,87 @@
+├── api
+│   ├── api.go
+│   ├── handler
+│   │   ├── booking.go
+│   │   ├── handler.go
+│   │   ├── notification.go
+│   │   ├── payment.go
+│   │   ├── provider.go
+│   │   ├── review.go
+│   │   └── service.go
+│   ├── middleware
+│   │   └── middleware.go
+│   └── token
+│       └── token.go
+├── clients
+│   └── client.go
+├── config
+│   ├── config.go
+│   ├── logger
+│   │   └── logger.go
+│   ├── model.conf
+│   └── policy.csv
+├── docker-compose.yml
+├── dockerfile
+├── docs
+│   ├── docs.go
+│   ├── swagger.json
+│   └── swagger.yaml
+├── frontend
+│   ├── public
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   └── manifest.json
+│   ├── src
+│   │   ├── assets
+│   │   │   └── images
+│   │   │       ├── logo.png
+│   │   │       └── background.jpg
+│   │   ├── components
+│   │   │   ├── Navbar.js
+│   │   │   ├── Footer.js
+│   │   │   ├── ServiceList.js
+│   │   │   ├── ProviderList.js
+│   │   │   ├── BookingForm.js
+│   │   │   └── ReviewList.js
+│   │   ├── pages
+│   │   │   ├── Home.js
+│   │   │   ├── Services.js
+│   │   │   ├── Providers.js
+│   │   │   ├── Bookings.js
+│   │   │   └── Reviews.js
+│   │   ├── styles
+│   │   │   └── tailwind.css
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   ├── api.js
+│   │   └── routes.js
+│   └── tailwind.config.js
+├── genproto
+│   ├── auth
+│   │   ├── auth.pb.go
+│   │   └── auth_grpc.pb.go
+│   ├── carwash
+│   │   ├── booking.pb.go
+│   │   ├── booking_grpc.pb.go
+│   │   ├── notification.pb.go
+│   │   ├── notification_grpc.pb.go
+│   │   ├── payment.pb.go
+│   │   ├── payment_grpc.pb.go
+│   │   ├── provider.pb.go
+│   │   ├── provider_grpc.pb.go
+│   │   ├── review.pb.go
+│   │   ├── review_grpc.pb.go
+│   │   ├── service.pb.go
+│   │   └── service_grpc.pb.go
+│   └── user
+│       ├── user.pb.go
+│       └── user_grpc.pb.go
+├── go.mod
+├── go.sum
+├── kafka
+│   └── producer
+│       └── producer.go
+├── main.go
+├── Makefile
+└── scripts
+    └── gen-proto.sh
